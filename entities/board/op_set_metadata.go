@@ -1,9 +1,9 @@
-package bug
+package board
 
 import (
-	"github.com/git-bug/git-bug/entities/identity"
-	"github.com/git-bug/git-bug/entity"
-	"github.com/git-bug/git-bug/entity/dag"
+	"github.com/MichaelMure/git-bug/entities/identity"
+	"github.com/MichaelMure/git-bug/entity"
+	"github.com/MichaelMure/git-bug/entity/dag"
 )
 
 func NewSetMetadataOp(author identity.Interface, unixTime int64, target entity.Id, newMetadata map[string]string) *dag.SetMetadataOperation[*Snapshot] {
