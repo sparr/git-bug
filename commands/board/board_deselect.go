@@ -3,9 +3,9 @@ package boardcmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/MichaelMure/git-bug/commands/execenv"
-	_select "github.com/MichaelMure/git-bug/commands/select"
-	"github.com/MichaelMure/git-bug/entities/board"
+	"github.com/git-bug/git-bug/commands/execenv"
+	_select "github.com/git-bug/git-bug/commands/select"
+	"github.com/git-bug/git-bug/entities/board"
 )
 
 func newBoardDeselectCommand() *cobra.Command {

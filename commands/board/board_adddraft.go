@@ -6,11 +6,11 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/MichaelMure/git-bug/cache"
-	buginput "github.com/MichaelMure/git-bug/commands/bug/input"
-	"github.com/MichaelMure/git-bug/commands/execenv"
-	_select "github.com/MichaelMure/git-bug/commands/select"
-	"github.com/MichaelMure/git-bug/entity"
+	"github.com/git-bug/git-bug/cache"
+	buginput "github.com/git-bug/git-bug/commands/bug/input"
+	"github.com/git-bug/git-bug/commands/execenv"
+	_select "github.com/git-bug/git-bug/commands/select"
+	"github.com/git-bug/git-bug/entity"
 )
 
 type boardAddDraftOptions struct {

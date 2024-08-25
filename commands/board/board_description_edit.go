@@ -3,9 +3,9 @@ package boardcmd
 import (
 	"github.com/spf13/cobra"
 
-	"github.com/MichaelMure/git-bug/commands/execenv"
-	"github.com/MichaelMure/git-bug/commands/input"
-	"github.com/MichaelMure/git-bug/util/text"
+	"github.com/git-bug/git-bug/commands/execenv"
+	"github.com/git-bug/git-bug/commands/input"
+	"github.com/git-bug/git-bug/util/text"
 )
 
 type boardDescriptionEditOptions struct {

@@ -1,8 +1,8 @@
 package cmdjson
 
 import (
-	"github.com/MichaelMure/git-bug/cache"
-	"github.com/MichaelMure/git-bug/entities/board"
+	"github.com/git-bug/git-bug/cache"
+	"github.com/git-bug/git-bug/entities/board"
 )
 
 type BoardSnapshot struct {

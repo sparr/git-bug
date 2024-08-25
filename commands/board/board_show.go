@@ -5,9 +5,9 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/MichaelMure/git-bug/commands/cmdjson"
-	"github.com/MichaelMure/git-bug/commands/execenv"
-	"github.com/MichaelMure/git-bug/entities/board"
+	"github.com/git-bug/git-bug/commands/cmdjson"
+	"github.com/git-bug/git-bug/commands/execenv"
+	"github.com/git-bug/git-bug/entities/board"
 )
 
 type boardShowOptions struct {

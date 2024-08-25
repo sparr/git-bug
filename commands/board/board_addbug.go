@@ -3,8 +3,8 @@ package boardcmd
 import (
 	"github.com/spf13/cobra"
 
-	bugcmd "github.com/MichaelMure/git-bug/commands/bug"
-	"github.com/MichaelMure/git-bug/commands/execenv"
+	bugcmd "github.com/git-bug/git-bug/commands/bug"
+	"github.com/git-bug/git-bug/commands/execenv"
 )
 
 type boardAddBugOptions struct {

@@ -3,10 +3,10 @@ package board
 import (
 	"fmt"
 
-	"github.com/MichaelMure/git-bug/entities/bug"
-	"github.com/MichaelMure/git-bug/entities/identity"
-	"github.com/MichaelMure/git-bug/entity"
-	"github.com/MichaelMure/git-bug/entity/dag"
+	"github.com/git-bug/git-bug/entities/bug"
+	"github.com/git-bug/git-bug/entities/identity"
+	"github.com/git-bug/git-bug/entity"
+	"github.com/git-bug/git-bug/entity/dag"
 )
 
 // ItemEntityType indicate the type of entity board item

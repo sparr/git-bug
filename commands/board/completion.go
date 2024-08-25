@@ -5,11 +5,11 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/MichaelMure/git-bug/cache"
-	bugcmd "github.com/MichaelMure/git-bug/commands/bug"
-	"github.com/MichaelMure/git-bug/commands/completion"
-	"github.com/MichaelMure/git-bug/commands/execenv"
-	_select "github.com/MichaelMure/git-bug/commands/select"
+	"github.com/git-bug/git-bug/cache"
+	bugcmd "github.com/git-bug/git-bug/commands/bug"
+	"github.com/git-bug/git-bug/commands/completion"
+	"github.com/git-bug/git-bug/commands/execenv"
+	_select "github.com/git-bug/git-bug/commands/select"
 )
 
 // BoardCompletion complete a board id
