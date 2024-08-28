@@ -13,28 +13,25 @@ import (
 
 	"github.com/99designs/gqlgen/graphql"
 	"github.com/git-bug/git-bug/api/graphql/models"
-	"github.com/git-bug/git-bug/entities/common"
 	"github.com/git-bug/git-bug/entity"
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
 // region    ************************** generated!.gotpl **************************
 
-type BugResolver interface {
-	HumanID(ctx context.Context, obj models.BugWrapper) (string, error)
+type BoardResolver interface {
+	HumanID(ctx context.Context, obj models.BoardWrapper) (string, error)
 
-	Actors(ctx context.Context, obj models.BugWrapper, after *string, before *string, first *int, last *int) (*models.IdentityConnection, error)
-	Participants(ctx context.Context, obj models.BugWrapper, after *string, before *string, first *int, last *int) (*models.IdentityConnection, error)
-	Comments(ctx context.Context, obj models.BugWrapper, after *string, before *string, first *int, last *int) (*models.BugCommentConnection, error)
-	Timeline(ctx context.Context, obj models.BugWrapper, after *string, before *string, first *int, last *int) (*models.BugTimelineItemConnection, error)
-	Operations(ctx context.Context, obj models.BugWrapper, after *string, before *string, first *int, last *int) (*models.OperationConnection, error)
+	Columns(ctx context.Context, obj models.BoardWrapper, after *string, before *string, first *int, last *int) (*models.BoardColumnConnection, error)
+	Actors(ctx context.Context, obj models.BoardWrapper, after *string, before *string, first *int, last *int) (*models.IdentityConnection, error)
+	Operations(ctx context.Context, obj models.BoardWrapper, after *string, before *string, first *int, last *int) (*models.OperationConnection, error)
 }
 
 // endregion ************************** generated!.gotpl **************************
 
 // region    ***************************** args.gotpl *****************************
 
-func (ec *executionContext) field_Bug_actors_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Board_actors_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -76,7 +73,7 @@ func (ec *executionContext) field_Bug_actors_args(ctx context.Context, rawArgs m
 	return args, nil
 }
 
-func (ec *executionContext) field_Bug_comments_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Board_columns_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -118,91 +115,7 @@ func (ec *executionContext) field_Bug_comments_args(ctx context.Context, rawArgs
 	return args, nil
 }
 
-func (ec *executionContext) field_Bug_operations_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
-	var err error
-	args := map[string]interface{}{}
-	var arg0 *string
-	if tmp, ok := rawArgs["after"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("after"))
-		arg0, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["after"] = arg0
-	var arg1 *string
-	if tmp, ok := rawArgs["before"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("before"))
-		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["before"] = arg1
-	var arg2 *int
-	if tmp, ok := rawArgs["first"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("first"))
-		arg2, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["first"] = arg2
-	var arg3 *int
-	if tmp, ok := rawArgs["last"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("last"))
-		arg3, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["last"] = arg3
-	return args, nil
-}
-
-func (ec *executionContext) field_Bug_participants_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
-	var err error
-	args := map[string]interface{}{}
-	var arg0 *string
-	if tmp, ok := rawArgs["after"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("after"))
-		arg0, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["after"] = arg0
-	var arg1 *string
-	if tmp, ok := rawArgs["before"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("before"))
-		arg1, err = ec.unmarshalOString2ᚖstring(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["before"] = arg1
-	var arg2 *int
-	if tmp, ok := rawArgs["first"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("first"))
-		arg2, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["first"] = arg2
-	var arg3 *int
-	if tmp, ok := rawArgs["last"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("last"))
-		arg3, err = ec.unmarshalOInt2ᚖint(ctx, tmp)
-		if err != nil {
-			return nil, err
-		}
-	}
-	args["last"] = arg3
-	return args, nil
-}
-
-func (ec *executionContext) field_Bug_timeline_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+func (ec *executionContext) field_Board_operations_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
 	var arg0 *string
@@ -252,8 +165,8 @@ func (ec *executionContext) field_Bug_timeline_args(ctx context.Context, rawArgs
 
 // region    **************************** field.gotpl *****************************
 
-func (ec *executionContext) _Bug_id(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_id(ctx, field)
+func (ec *executionContext) _Board_id(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_id(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -283,9 +196,9 @@ func (ec *executionContext) _Bug_id(ctx context.Context, field graphql.Collected
 	return ec.marshalNID2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋentityᚐId(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_id(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: false,
@@ -296,8 +209,8 @@ func (ec *executionContext) fieldContext_Bug_id(_ context.Context, field graphql
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_humanId(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_humanId(ctx, field)
+func (ec *executionContext) _Board_humanId(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_humanId(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -310,7 +223,7 @@ func (ec *executionContext) _Bug_humanId(ctx context.Context, field graphql.Coll
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Bug().HumanID(rctx, obj)
+		return ec.resolvers.Board().HumanID(rctx, obj)
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -327,9 +240,9 @@ func (ec *executionContext) _Bug_humanId(ctx context.Context, field graphql.Coll
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_humanId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_humanId(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: true,
@@ -340,8 +253,8 @@ func (ec *executionContext) fieldContext_Bug_humanId(_ context.Context, field gr
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_createdAt(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_createdAt(ctx, field)
+func (ec *executionContext) _Board_createdAt(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_createdAt(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -371,9 +284,9 @@ func (ec *executionContext) _Bug_createdAt(ctx context.Context, field graphql.Co
 	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_createdAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_createdAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: false,
@@ -384,8 +297,8 @@ func (ec *executionContext) fieldContext_Bug_createdAt(_ context.Context, field 
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_lastEdit(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_lastEdit(ctx, field)
+func (ec *executionContext) _Board_lastEdit(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_lastEdit(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -415,9 +328,9 @@ func (ec *executionContext) _Bug_lastEdit(ctx context.Context, field graphql.Col
 	return ec.marshalNTime2timeᚐTime(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_lastEdit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_lastEdit(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: false,
@@ -428,52 +341,8 @@ func (ec *executionContext) fieldContext_Bug_lastEdit(_ context.Context, field g
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_status(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_status(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return obj.Status(), nil
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(common.Status)
-	fc.Result = res
-	return ec.marshalNStatus2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋentitiesᚋcommonᚐStatus(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Bug_status(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Bug",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: false,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			return nil, errors.New("field of type Status does not have child fields")
-		},
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Bug_title(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_title(ctx, field)
+func (ec *executionContext) _Board_title(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_title(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -503,9 +372,9 @@ func (ec *executionContext) _Bug_title(ctx context.Context, field graphql.Collec
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_title(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_title(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: false,
@@ -516,8 +385,8 @@ func (ec *executionContext) fieldContext_Bug_title(_ context.Context, field grap
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_labels(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_labels(ctx, field)
+func (ec *executionContext) _Board_description(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_description(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -530,7 +399,7 @@ func (ec *executionContext) _Bug_labels(ctx context.Context, field graphql.Colle
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Labels(), nil
+		return obj.Description(), nil
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -542,32 +411,26 @@ func (ec *executionContext) _Bug_labels(ctx context.Context, field graphql.Colle
 		}
 		return graphql.Null
 	}
-	res := resTmp.([]common.Label)
+	res := resTmp.(string)
 	fc.Result = res
-	return ec.marshalNLabel2ᚕgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋentitiesᚋcommonᚐLabelᚄ(ctx, field.Selections, res)
+	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_labels(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_description(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "name":
-				return ec.fieldContext_Label_name(ctx, field)
-			case "color":
-				return ec.fieldContext_Label_color(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type Label", field.Name)
+			return nil, errors.New("field of type String does not have child fields")
 		},
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_author(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_author(ctx, field)
+func (ec *executionContext) _Board_columns(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_columns(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -580,7 +443,7 @@ func (ec *executionContext) _Bug_author(ctx context.Context, field graphql.Colle
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return obj.Author()
+		return ec.resolvers.Board().Columns(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -592,44 +455,47 @@ func (ec *executionContext) _Bug_author(ctx context.Context, field graphql.Colle
 		}
 		return graphql.Null
 	}
-	res := resTmp.(models.IdentityWrapper)
+	res := resTmp.(*models.BoardColumnConnection)
 	fc.Result = res
-	return ec.marshalNIdentity2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐIdentityWrapper(ctx, field.Selections, res)
+	return ec.marshalNBoardColumnConnection2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardColumnConnection(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_author(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_columns(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
-		IsResolver: false,
+		IsResolver: true,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
-			case "id":
-				return ec.fieldContext_Identity_id(ctx, field)
-			case "humanId":
-				return ec.fieldContext_Identity_humanId(ctx, field)
-			case "name":
-				return ec.fieldContext_Identity_name(ctx, field)
-			case "email":
-				return ec.fieldContext_Identity_email(ctx, field)
-			case "login":
-				return ec.fieldContext_Identity_login(ctx, field)
-			case "displayName":
-				return ec.fieldContext_Identity_displayName(ctx, field)
-			case "avatarUrl":
-				return ec.fieldContext_Identity_avatarUrl(ctx, field)
-			case "isProtected":
-				return ec.fieldContext_Identity_isProtected(ctx, field)
+			case "edges":
+				return ec.fieldContext_BoardColumnConnection_edges(ctx, field)
+			case "nodes":
+				return ec.fieldContext_BoardColumnConnection_nodes(ctx, field)
+			case "pageInfo":
+				return ec.fieldContext_BoardColumnConnection_pageInfo(ctx, field)
+			case "totalCount":
+				return ec.fieldContext_BoardColumnConnection_totalCount(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type Identity", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type BoardColumnConnection", field.Name)
 		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Board_columns_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return fc, err
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_actors(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_actors(ctx, field)
+func (ec *executionContext) _Board_actors(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_actors(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -642,7 +508,7 @@ func (ec *executionContext) _Bug_actors(ctx context.Context, field graphql.Colle
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Bug().Actors(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
+		return ec.resolvers.Board().Actors(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -659,9 +525,9 @@ func (ec *executionContext) _Bug_actors(ctx context.Context, field graphql.Colle
 	return ec.marshalNIdentityConnection2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐIdentityConnection(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_actors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_actors(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: true,
@@ -686,15 +552,15 @@ func (ec *executionContext) fieldContext_Bug_actors(ctx context.Context, field g
 		}
 	}()
 	ctx = graphql.WithFieldContext(ctx, fc)
-	if fc.Args, err = ec.field_Bug_actors_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+	if fc.Args, err = ec.field_Board_actors_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return fc, err
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _Bug_participants(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_participants(ctx, field)
+func (ec *executionContext) _Board_operations(ctx context.Context, field graphql.CollectedField, obj models.BoardWrapper) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Board_operations(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -707,202 +573,7 @@ func (ec *executionContext) _Bug_participants(ctx context.Context, field graphql
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Bug().Participants(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*models.IdentityConnection)
-	fc.Result = res
-	return ec.marshalNIdentityConnection2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐIdentityConnection(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Bug_participants(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Bug",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: true,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "edges":
-				return ec.fieldContext_IdentityConnection_edges(ctx, field)
-			case "nodes":
-				return ec.fieldContext_IdentityConnection_nodes(ctx, field)
-			case "pageInfo":
-				return ec.fieldContext_IdentityConnection_pageInfo(ctx, field)
-			case "totalCount":
-				return ec.fieldContext_IdentityConnection_totalCount(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type IdentityConnection", field.Name)
-		},
-	}
-	defer func() {
-		if r := recover(); r != nil {
-			err = ec.Recover(ctx, r)
-			ec.Error(ctx, err)
-		}
-	}()
-	ctx = graphql.WithFieldContext(ctx, fc)
-	if fc.Args, err = ec.field_Bug_participants_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
-		ec.Error(ctx, err)
-		return fc, err
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Bug_comments(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_comments(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Bug().Comments(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*models.BugCommentConnection)
-	fc.Result = res
-	return ec.marshalNBugCommentConnection2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugCommentConnection(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Bug_comments(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Bug",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: true,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "edges":
-				return ec.fieldContext_BugCommentConnection_edges(ctx, field)
-			case "nodes":
-				return ec.fieldContext_BugCommentConnection_nodes(ctx, field)
-			case "pageInfo":
-				return ec.fieldContext_BugCommentConnection_pageInfo(ctx, field)
-			case "totalCount":
-				return ec.fieldContext_BugCommentConnection_totalCount(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type BugCommentConnection", field.Name)
-		},
-	}
-	defer func() {
-		if r := recover(); r != nil {
-			err = ec.Recover(ctx, r)
-			ec.Error(ctx, err)
-		}
-	}()
-	ctx = graphql.WithFieldContext(ctx, fc)
-	if fc.Args, err = ec.field_Bug_comments_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
-		ec.Error(ctx, err)
-		return fc, err
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Bug_timeline(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_timeline(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Bug().Timeline(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
-	})
-	if err != nil {
-		ec.Error(ctx, err)
-		return graphql.Null
-	}
-	if resTmp == nil {
-		if !graphql.HasFieldError(ctx, fc) {
-			ec.Errorf(ctx, "must not be null")
-		}
-		return graphql.Null
-	}
-	res := resTmp.(*models.BugTimelineItemConnection)
-	fc.Result = res
-	return ec.marshalNBugTimelineItemConnection2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugTimelineItemConnection(ctx, field.Selections, res)
-}
-
-func (ec *executionContext) fieldContext_Bug_timeline(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	fc = &graphql.FieldContext{
-		Object:     "Bug",
-		Field:      field,
-		IsMethod:   true,
-		IsResolver: true,
-		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
-			switch field.Name {
-			case "edges":
-				return ec.fieldContext_BugTimelineItemConnection_edges(ctx, field)
-			case "nodes":
-				return ec.fieldContext_BugTimelineItemConnection_nodes(ctx, field)
-			case "pageInfo":
-				return ec.fieldContext_BugTimelineItemConnection_pageInfo(ctx, field)
-			case "totalCount":
-				return ec.fieldContext_BugTimelineItemConnection_totalCount(ctx, field)
-			}
-			return nil, fmt.Errorf("no field named %q was found under type BugTimelineItemConnection", field.Name)
-		},
-	}
-	defer func() {
-		if r := recover(); r != nil {
-			err = ec.Recover(ctx, r)
-			ec.Error(ctx, err)
-		}
-	}()
-	ctx = graphql.WithFieldContext(ctx, fc)
-	if fc.Args, err = ec.field_Bug_timeline_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
-		ec.Error(ctx, err)
-		return fc, err
-	}
-	return fc, nil
-}
-
-func (ec *executionContext) _Bug_operations(ctx context.Context, field graphql.CollectedField, obj models.BugWrapper) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_Bug_operations(ctx, field)
-	if err != nil {
-		return graphql.Null
-	}
-	ctx = graphql.WithFieldContext(ctx, fc)
-	defer func() {
-		if r := recover(); r != nil {
-			ec.Error(ctx, ec.Recover(ctx, r))
-			ret = graphql.Null
-		}
-	}()
-	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
-		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Bug().Operations(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
+		return ec.resolvers.Board().Operations(rctx, obj, fc.Args["after"].(*string), fc.Args["before"].(*string), fc.Args["first"].(*int), fc.Args["last"].(*int))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -919,9 +590,9 @@ func (ec *executionContext) _Bug_operations(ctx context.Context, field graphql.C
 	return ec.marshalNOperationConnection2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐOperationConnection(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_Bug_operations(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_Board_operations(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "Bug",
+		Object:     "Board",
 		Field:      field,
 		IsMethod:   true,
 		IsResolver: true,
@@ -946,15 +617,15 @@ func (ec *executionContext) fieldContext_Bug_operations(ctx context.Context, fie
 		}
 	}()
 	ctx = graphql.WithFieldContext(ctx, fc)
-	if fc.Args, err = ec.field_Bug_operations_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+	if fc.Args, err = ec.field_Board_operations_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return fc, err
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _BugConnection_edges(ctx context.Context, field graphql.CollectedField, obj *models.BugConnection) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BugConnection_edges(ctx, field)
+func (ec *executionContext) _BoardConnection_edges(ctx context.Context, field graphql.CollectedField, obj *models.BoardConnection) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BoardConnection_edges(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -979,32 +650,32 @@ func (ec *executionContext) _BugConnection_edges(ctx context.Context, field grap
 		}
 		return graphql.Null
 	}
-	res := resTmp.([]*models.BugEdge)
+	res := resTmp.([]*models.BoardEdge)
 	fc.Result = res
-	return ec.marshalNBugEdge2ᚕᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugEdgeᚄ(ctx, field.Selections, res)
+	return ec.marshalNBoardEdge2ᚕᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardEdgeᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BugConnection_edges(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BoardConnection_edges(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "BugConnection",
+		Object:     "BoardConnection",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "cursor":
-				return ec.fieldContext_BugEdge_cursor(ctx, field)
+				return ec.fieldContext_BoardEdge_cursor(ctx, field)
 			case "node":
-				return ec.fieldContext_BugEdge_node(ctx, field)
+				return ec.fieldContext_BoardEdge_node(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type BugEdge", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type BoardEdge", field.Name)
 		},
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _BugConnection_nodes(ctx context.Context, field graphql.CollectedField, obj *models.BugConnection) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BugConnection_nodes(ctx, field)
+func (ec *executionContext) _BoardConnection_nodes(ctx context.Context, field graphql.CollectedField, obj *models.BoardConnection) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BoardConnection_nodes(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1029,54 +700,46 @@ func (ec *executionContext) _BugConnection_nodes(ctx context.Context, field grap
 		}
 		return graphql.Null
 	}
-	res := resTmp.([]models.BugWrapper)
+	res := resTmp.([]models.BoardWrapper)
 	fc.Result = res
-	return ec.marshalNBug2ᚕgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugWrapperᚄ(ctx, field.Selections, res)
+	return ec.marshalNBoard2ᚕgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardWrapperᚄ(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BugConnection_nodes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BoardConnection_nodes(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "BugConnection",
+		Object:     "BoardConnection",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "id":
-				return ec.fieldContext_Bug_id(ctx, field)
+				return ec.fieldContext_Board_id(ctx, field)
 			case "humanId":
-				return ec.fieldContext_Bug_humanId(ctx, field)
+				return ec.fieldContext_Board_humanId(ctx, field)
 			case "createdAt":
-				return ec.fieldContext_Bug_createdAt(ctx, field)
+				return ec.fieldContext_Board_createdAt(ctx, field)
 			case "lastEdit":
-				return ec.fieldContext_Bug_lastEdit(ctx, field)
-			case "status":
-				return ec.fieldContext_Bug_status(ctx, field)
+				return ec.fieldContext_Board_lastEdit(ctx, field)
 			case "title":
-				return ec.fieldContext_Bug_title(ctx, field)
-			case "labels":
-				return ec.fieldContext_Bug_labels(ctx, field)
-			case "author":
-				return ec.fieldContext_Bug_author(ctx, field)
+				return ec.fieldContext_Board_title(ctx, field)
+			case "description":
+				return ec.fieldContext_Board_description(ctx, field)
+			case "columns":
+				return ec.fieldContext_Board_columns(ctx, field)
 			case "actors":
-				return ec.fieldContext_Bug_actors(ctx, field)
-			case "participants":
-				return ec.fieldContext_Bug_participants(ctx, field)
-			case "comments":
-				return ec.fieldContext_Bug_comments(ctx, field)
-			case "timeline":
-				return ec.fieldContext_Bug_timeline(ctx, field)
+				return ec.fieldContext_Board_actors(ctx, field)
 			case "operations":
-				return ec.fieldContext_Bug_operations(ctx, field)
+				return ec.fieldContext_Board_operations(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type Bug", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type Board", field.Name)
 		},
 	}
 	return fc, nil
 }
 
-func (ec *executionContext) _BugConnection_pageInfo(ctx context.Context, field graphql.CollectedField, obj *models.BugConnection) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BugConnection_pageInfo(ctx, field)
+func (ec *executionContext) _BoardConnection_pageInfo(ctx context.Context, field graphql.CollectedField, obj *models.BoardConnection) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BoardConnection_pageInfo(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1106,9 +769,9 @@ func (ec *executionContext) _BugConnection_pageInfo(ctx context.Context, field g
 	return ec.marshalNPageInfo2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐPageInfo(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BugConnection_pageInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BoardConnection_pageInfo(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "BugConnection",
+		Object:     "BoardConnection",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -1129,8 +792,8 @@ func (ec *executionContext) fieldContext_BugConnection_pageInfo(_ context.Contex
 	return fc, nil
 }
 
-func (ec *executionContext) _BugConnection_totalCount(ctx context.Context, field graphql.CollectedField, obj *models.BugConnection) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BugConnection_totalCount(ctx, field)
+func (ec *executionContext) _BoardConnection_totalCount(ctx context.Context, field graphql.CollectedField, obj *models.BoardConnection) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BoardConnection_totalCount(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1160,9 +823,9 @@ func (ec *executionContext) _BugConnection_totalCount(ctx context.Context, field
 	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BugConnection_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BoardConnection_totalCount(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "BugConnection",
+		Object:     "BoardConnection",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -1173,8 +836,8 @@ func (ec *executionContext) fieldContext_BugConnection_totalCount(_ context.Cont
 	return fc, nil
 }
 
-func (ec *executionContext) _BugEdge_cursor(ctx context.Context, field graphql.CollectedField, obj *models.BugEdge) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BugEdge_cursor(ctx, field)
+func (ec *executionContext) _BoardEdge_cursor(ctx context.Context, field graphql.CollectedField, obj *models.BoardEdge) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BoardEdge_cursor(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1204,9 +867,9 @@ func (ec *executionContext) _BugEdge_cursor(ctx context.Context, field graphql.C
 	return ec.marshalNString2string(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BugEdge_cursor(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BoardEdge_cursor(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "BugEdge",
+		Object:     "BoardEdge",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
@@ -1217,8 +880,8 @@ func (ec *executionContext) fieldContext_BugEdge_cursor(_ context.Context, field
 	return fc, nil
 }
 
-func (ec *executionContext) _BugEdge_node(ctx context.Context, field graphql.CollectedField, obj *models.BugEdge) (ret graphql.Marshaler) {
-	fc, err := ec.fieldContext_BugEdge_node(ctx, field)
+func (ec *executionContext) _BoardEdge_node(ctx context.Context, field graphql.CollectedField, obj *models.BoardEdge) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_BoardEdge_node(ctx, field)
 	if err != nil {
 		return graphql.Null
 	}
@@ -1243,47 +906,39 @@ func (ec *executionContext) _BugEdge_node(ctx context.Context, field graphql.Col
 		}
 		return graphql.Null
 	}
-	res := resTmp.(models.BugWrapper)
+	res := resTmp.(models.BoardWrapper)
 	fc.Result = res
-	return ec.marshalNBug2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugWrapper(ctx, field.Selections, res)
+	return ec.marshalNBoard2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardWrapper(ctx, field.Selections, res)
 }
 
-func (ec *executionContext) fieldContext_BugEdge_node(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+func (ec *executionContext) fieldContext_BoardEdge_node(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
 	fc = &graphql.FieldContext{
-		Object:     "BugEdge",
+		Object:     "BoardEdge",
 		Field:      field,
 		IsMethod:   false,
 		IsResolver: false,
 		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
 			switch field.Name {
 			case "id":
-				return ec.fieldContext_Bug_id(ctx, field)
+				return ec.fieldContext_Board_id(ctx, field)
 			case "humanId":
-				return ec.fieldContext_Bug_humanId(ctx, field)
+				return ec.fieldContext_Board_humanId(ctx, field)
 			case "createdAt":
-				return ec.fieldContext_Bug_createdAt(ctx, field)
+				return ec.fieldContext_Board_createdAt(ctx, field)
 			case "lastEdit":
-				return ec.fieldContext_Bug_lastEdit(ctx, field)
-			case "status":
-				return ec.fieldContext_Bug_status(ctx, field)
+				return ec.fieldContext_Board_lastEdit(ctx, field)
 			case "title":
-				return ec.fieldContext_Bug_title(ctx, field)
-			case "labels":
-				return ec.fieldContext_Bug_labels(ctx, field)
-			case "author":
-				return ec.fieldContext_Bug_author(ctx, field)
+				return ec.fieldContext_Board_title(ctx, field)
+			case "description":
+				return ec.fieldContext_Board_description(ctx, field)
+			case "columns":
+				return ec.fieldContext_Board_columns(ctx, field)
 			case "actors":
-				return ec.fieldContext_Bug_actors(ctx, field)
-			case "participants":
-				return ec.fieldContext_Bug_participants(ctx, field)
-			case "comments":
-				return ec.fieldContext_Bug_comments(ctx, field)
-			case "timeline":
-				return ec.fieldContext_Bug_timeline(ctx, field)
+				return ec.fieldContext_Board_actors(ctx, field)
 			case "operations":
-				return ec.fieldContext_Bug_operations(ctx, field)
+				return ec.fieldContext_Board_operations(ctx, field)
 			}
-			return nil, fmt.Errorf("no field named %q was found under type Bug", field.Name)
+			return nil, fmt.Errorf("no field named %q was found under type Board", field.Name)
 		},
 	}
 	return fc, nil
@@ -1301,19 +956,19 @@ func (ec *executionContext) fieldContext_BugEdge_node(_ context.Context, field g
 
 // region    **************************** object.gotpl ****************************
 
-var bugImplementors = []string{"Bug", "Authored"}
+var boardImplementors = []string{"Board"}
 
-func (ec *executionContext) _Bug(ctx context.Context, sel ast.SelectionSet, obj models.BugWrapper) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, bugImplementors)
+func (ec *executionContext) _Board(ctx context.Context, sel ast.SelectionSet, obj models.BoardWrapper) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, boardImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("Bug")
+			out.Values[i] = graphql.MarshalString("Board")
 		case "id":
-			out.Values[i] = ec._Bug_id(ctx, field, obj)
+			out.Values[i] = ec._Board_id(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&out.Invalids, 1)
 			}
@@ -1326,7 +981,7 @@ func (ec *executionContext) _Bug(ctx context.Context, sel ast.SelectionSet, obj 
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Bug_humanId(ctx, field, obj)
+				res = ec._Board_humanId(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&fs.Invalids, 1)
 				}
@@ -1354,35 +1009,61 @@ func (ec *executionContext) _Bug(ctx context.Context, sel ast.SelectionSet, obj 
 
 			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
 		case "createdAt":
-			out.Values[i] = ec._Bug_createdAt(ctx, field, obj)
+			out.Values[i] = ec._Board_createdAt(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&out.Invalids, 1)
 			}
 		case "lastEdit":
-			out.Values[i] = ec._Bug_lastEdit(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				atomic.AddUint32(&out.Invalids, 1)
-			}
-		case "status":
-			out.Values[i] = ec._Bug_status(ctx, field, obj)
+			out.Values[i] = ec._Board_lastEdit(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&out.Invalids, 1)
 			}
 		case "title":
-			out.Values[i] = ec._Bug_title(ctx, field, obj)
+			out.Values[i] = ec._Board_title(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&out.Invalids, 1)
 			}
-		case "labels":
-			out.Values[i] = ec._Bug_labels(ctx, field, obj)
+		case "description":
+			out.Values[i] = ec._Board_description(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				atomic.AddUint32(&out.Invalids, 1)
 			}
-		case "author":
-			out.Values[i] = ec._Bug_author(ctx, field, obj)
-			if out.Values[i] == graphql.Null {
-				atomic.AddUint32(&out.Invalids, 1)
+		case "columns":
+			field := field
+
+			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
+				defer func() {
+					if r := recover(); r != nil {
+						ec.Error(ctx, ec.Recover(ctx, r))
+					}
+				}()
+				res = ec._Board_columns(ctx, field, obj)
+				if res == graphql.Null {
+					atomic.AddUint32(&fs.Invalids, 1)
+				}
+				return res
 			}
+
+			if field.Deferrable != nil {
+				dfs, ok := deferred[field.Deferrable.Label]
+				di := 0
+				if ok {
+					dfs.AddField(field)
+					di = len(dfs.Values) - 1
+				} else {
+					dfs = graphql.NewFieldSet([]graphql.CollectedField{field})
+					deferred[field.Deferrable.Label] = dfs
+				}
+				dfs.Concurrently(di, func(ctx context.Context) graphql.Marshaler {
+					return innerFunc(ctx, dfs)
+				})
+
+				// don't run the out.Concurrently() call below
+				out.Values[i] = graphql.Null
+				continue
+			}
+
+			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
 		case "actors":
 			field := field
 
@@ -1392,115 +1073,7 @@ func (ec *executionContext) _Bug(ctx context.Context, sel ast.SelectionSet, obj 
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Bug_actors(ctx, field, obj)
-				if res == graphql.Null {
-					atomic.AddUint32(&fs.Invalids, 1)
-				}
-				return res
-			}
-
-			if field.Deferrable != nil {
-				dfs, ok := deferred[field.Deferrable.Label]
-				di := 0
-				if ok {
-					dfs.AddField(field)
-					di = len(dfs.Values) - 1
-				} else {
-					dfs = graphql.NewFieldSet([]graphql.CollectedField{field})
-					deferred[field.Deferrable.Label] = dfs
-				}
-				dfs.Concurrently(di, func(ctx context.Context) graphql.Marshaler {
-					return innerFunc(ctx, dfs)
-				})
-
-				// don't run the out.Concurrently() call below
-				out.Values[i] = graphql.Null
-				continue
-			}
-
-			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
-		case "participants":
-			field := field
-
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._Bug_participants(ctx, field, obj)
-				if res == graphql.Null {
-					atomic.AddUint32(&fs.Invalids, 1)
-				}
-				return res
-			}
-
-			if field.Deferrable != nil {
-				dfs, ok := deferred[field.Deferrable.Label]
-				di := 0
-				if ok {
-					dfs.AddField(field)
-					di = len(dfs.Values) - 1
-				} else {
-					dfs = graphql.NewFieldSet([]graphql.CollectedField{field})
-					deferred[field.Deferrable.Label] = dfs
-				}
-				dfs.Concurrently(di, func(ctx context.Context) graphql.Marshaler {
-					return innerFunc(ctx, dfs)
-				})
-
-				// don't run the out.Concurrently() call below
-				out.Values[i] = graphql.Null
-				continue
-			}
-
-			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
-		case "comments":
-			field := field
-
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._Bug_comments(ctx, field, obj)
-				if res == graphql.Null {
-					atomic.AddUint32(&fs.Invalids, 1)
-				}
-				return res
-			}
-
-			if field.Deferrable != nil {
-				dfs, ok := deferred[field.Deferrable.Label]
-				di := 0
-				if ok {
-					dfs.AddField(field)
-					di = len(dfs.Values) - 1
-				} else {
-					dfs = graphql.NewFieldSet([]graphql.CollectedField{field})
-					deferred[field.Deferrable.Label] = dfs
-				}
-				dfs.Concurrently(di, func(ctx context.Context) graphql.Marshaler {
-					return innerFunc(ctx, dfs)
-				})
-
-				// don't run the out.Concurrently() call below
-				out.Values[i] = graphql.Null
-				continue
-			}
-
-			out.Concurrently(i, func(ctx context.Context) graphql.Marshaler { return innerFunc(ctx, out) })
-		case "timeline":
-			field := field
-
-			innerFunc := func(ctx context.Context, fs *graphql.FieldSet) (res graphql.Marshaler) {
-				defer func() {
-					if r := recover(); r != nil {
-						ec.Error(ctx, ec.Recover(ctx, r))
-					}
-				}()
-				res = ec._Bug_timeline(ctx, field, obj)
+				res = ec._Board_actors(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&fs.Invalids, 1)
 				}
@@ -1536,7 +1109,7 @@ func (ec *executionContext) _Bug(ctx context.Context, sel ast.SelectionSet, obj 
 						ec.Error(ctx, ec.Recover(ctx, r))
 					}
 				}()
-				res = ec._Bug_operations(ctx, field, obj)
+				res = ec._Board_operations(ctx, field, obj)
 				if res == graphql.Null {
 					atomic.AddUint32(&fs.Invalids, 1)
 				}
@@ -1586,34 +1159,34 @@ func (ec *executionContext) _Bug(ctx context.Context, sel ast.SelectionSet, obj 
 	return out
 }
 
-var bugConnectionImplementors = []string{"BugConnection"}
+var boardConnectionImplementors = []string{"BoardConnection"}
 
-func (ec *executionContext) _BugConnection(ctx context.Context, sel ast.SelectionSet, obj *models.BugConnection) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, bugConnectionImplementors)
+func (ec *executionContext) _BoardConnection(ctx context.Context, sel ast.SelectionSet, obj *models.BoardConnection) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, boardConnectionImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("BugConnection")
+			out.Values[i] = graphql.MarshalString("BoardConnection")
 		case "edges":
-			out.Values[i] = ec._BugConnection_edges(ctx, field, obj)
+			out.Values[i] = ec._BoardConnection_edges(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
 		case "nodes":
-			out.Values[i] = ec._BugConnection_nodes(ctx, field, obj)
+			out.Values[i] = ec._BoardConnection_nodes(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
 		case "pageInfo":
-			out.Values[i] = ec._BugConnection_pageInfo(ctx, field, obj)
+			out.Values[i] = ec._BoardConnection_pageInfo(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
 		case "totalCount":
-			out.Values[i] = ec._BugConnection_totalCount(ctx, field, obj)
+			out.Values[i] = ec._BoardConnection_totalCount(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
@@ -1640,24 +1213,24 @@ func (ec *executionContext) _BugConnection(ctx context.Context, sel ast.Selectio
 	return out
 }
 
-var bugEdgeImplementors = []string{"BugEdge"}
+var boardEdgeImplementors = []string{"BoardEdge"}
 
-func (ec *executionContext) _BugEdge(ctx context.Context, sel ast.SelectionSet, obj *models.BugEdge) graphql.Marshaler {
-	fields := graphql.CollectFields(ec.OperationContext, sel, bugEdgeImplementors)
+func (ec *executionContext) _BoardEdge(ctx context.Context, sel ast.SelectionSet, obj *models.BoardEdge) graphql.Marshaler {
+	fields := graphql.CollectFields(ec.OperationContext, sel, boardEdgeImplementors)
 
 	out := graphql.NewFieldSet(fields)
 	deferred := make(map[string]*graphql.FieldSet)
 	for i, field := range fields {
 		switch field.Name {
 		case "__typename":
-			out.Values[i] = graphql.MarshalString("BugEdge")
+			out.Values[i] = graphql.MarshalString("BoardEdge")
 		case "cursor":
-			out.Values[i] = ec._BugEdge_cursor(ctx, field, obj)
+			out.Values[i] = ec._BoardEdge_cursor(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
 		case "node":
-			out.Values[i] = ec._BugEdge_node(ctx, field, obj)
+			out.Values[i] = ec._BoardEdge_node(ctx, field, obj)
 			if out.Values[i] == graphql.Null {
 				out.Invalids++
 			}
@@ -1688,17 +1261,17 @@ func (ec *executionContext) _BugEdge(ctx context.Context, sel ast.SelectionSet, 
 
 // region    ***************************** type.gotpl *****************************
 
-func (ec *executionContext) marshalNBug2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugWrapper(ctx context.Context, sel ast.SelectionSet, v models.BugWrapper) graphql.Marshaler {
+func (ec *executionContext) marshalNBoard2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardWrapper(ctx context.Context, sel ast.SelectionSet, v models.BoardWrapper) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
 		}
 		return graphql.Null
 	}
-	return ec._Bug(ctx, sel, v)
+	return ec._Board(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNBug2ᚕgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugWrapperᚄ(ctx context.Context, sel ast.SelectionSet, v []models.BugWrapper) graphql.Marshaler {
+func (ec *executionContext) marshalNBoard2ᚕgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardWrapperᚄ(ctx context.Context, sel ast.SelectionSet, v []models.BoardWrapper) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -1722,7 +1295,7 @@ func (ec *executionContext) marshalNBug2ᚕgithubᚗcomᚋgitᚑbugᚋgitᚑbug�
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNBug2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugWrapper(ctx, sel, v[i])
+			ret[i] = ec.marshalNBoard2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardWrapper(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -1742,21 +1315,7 @@ func (ec *executionContext) marshalNBug2ᚕgithubᚗcomᚋgitᚑbugᚋgitᚑbug�
 	return ret
 }
 
-func (ec *executionContext) marshalNBugConnection2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugConnection(ctx context.Context, sel ast.SelectionSet, v models.BugConnection) graphql.Marshaler {
-	return ec._BugConnection(ctx, sel, &v)
-}
-
-func (ec *executionContext) marshalNBugConnection2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugConnection(ctx context.Context, sel ast.SelectionSet, v *models.BugConnection) graphql.Marshaler {
-	if v == nil {
-		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
-			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
-		}
-		return graphql.Null
-	}
-	return ec._BugConnection(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalNBugEdge2ᚕᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*models.BugEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNBoardEdge2ᚕᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardEdgeᚄ(ctx context.Context, sel ast.SelectionSet, v []*models.BoardEdge) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -1780,7 +1339,7 @@ func (ec *executionContext) marshalNBugEdge2ᚕᚖgithubᚗcomᚋgitᚑbugᚋgit
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNBugEdge2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugEdge(ctx, sel, v[i])
+			ret[i] = ec.marshalNBoardEdge2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardEdge(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -1800,21 +1359,14 @@ func (ec *executionContext) marshalNBugEdge2ᚕᚖgithubᚗcomᚋgitᚑbugᚋgit
 	return ret
 }
 
-func (ec *executionContext) marshalNBugEdge2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugEdge(ctx context.Context, sel ast.SelectionSet, v *models.BugEdge) graphql.Marshaler {
+func (ec *executionContext) marshalNBoardEdge2ᚖgithubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBoardEdge(ctx context.Context, sel ast.SelectionSet, v *models.BoardEdge) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "the requested element is null which the schema does not allow")
 		}
 		return graphql.Null
 	}
-	return ec._BugEdge(ctx, sel, v)
-}
-
-func (ec *executionContext) marshalOBug2githubᚗcomᚋgitᚑbugᚋgitᚑbugᚋapiᚋgraphqlᚋmodelsᚐBugWrapper(ctx context.Context, sel ast.SelectionSet, v models.BugWrapper) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	return ec._Bug(ctx, sel, v)
+	return ec._BoardEdge(ctx, sel, v)
 }
 
 // endregion ***************************** type.gotpl *****************************
